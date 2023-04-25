@@ -10,7 +10,7 @@ class SummaryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Obtener si la respuesta es correcta
-    final IsCorrectAnswer =
+    final isCorrectAnswer =
         itemData['user_answer'] == itemData['correct_answer'];
 
     return Padding(
@@ -20,7 +20,7 @@ class SummaryItem extends StatelessWidget {
         children: [
           // Utilizar el componente QuestionIdentifier para identificar la pregunta
           QuestionIdentifier(
-            isCorrectAnswer: IsCorrectAnswer,
+            isCorrectAnswer: isCorrectAnswer,
             questionIndex: itemData['question_index'] as int,
           ),
           const SizedBox(width: 20),
