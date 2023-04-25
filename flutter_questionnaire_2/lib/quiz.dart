@@ -15,15 +15,18 @@ class _QuizState extends State<Quiz> {
   List<String> selectedAnswer = [];
   var activeScreen = 'start-screen';
 
+  // Cambiar a la pantalla de preguntas
   void switchScreen() {
     setState(() {
       activeScreen = 'questions-screen';
     });
   }
 
+  // Agregar la respuesta seleccionada
   void chooseAnswer(String answer) {
     selectedAnswer.add(answer);
 
+    // Si se han respondido todas las preguntas, cambiar a la pantalla de resultados
     if (selectedAnswer.length == questions.length) {
       setState(() {
         activeScreen = 'results-screen';
@@ -31,19 +34,31 @@ class _QuizState extends State<Quiz> {
     }
   }
 
+  // Reiniciar el cuestionario
+  void restartQuiz() {
+    setState(() {
+      selectedAnswer = [];
+      activeScreen = 'questions-screen';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Iniciar en la pantalla de inicio
     Widget screenWidget = StartScreen(switchScreen);
 
+    // Cambiar a la pantalla de preguntas si se ha seleccionado el botón de inicio
     if (activeScreen == 'questions-screen') {
       screenWidget = QuestionsScreen(
         onSelectAnswer: chooseAnswer,
       );
     }
 
+    // Cambiar a la pantalla de resultados si se han respondido todas las preguntas
     if (activeScreen == 'results-screen') {
       screenWidget = ResultsScreen(
         chosenAnswers: selectedAnswer,
+        onRestart: restartQuiz,
       );
     }
 
@@ -61,10 +76,6 @@ class _QuizState extends State<Quiz> {
               end: Alignment.bottomRight,
             ),
           ),
-          //child: activeScreen,
-          // child: activeScreen == 'start-screen'
-          //     ? StartScreen(switchScreen)
-          //     : const QuestionsScreen(),
           child: screenWidget,
         ),
       ),

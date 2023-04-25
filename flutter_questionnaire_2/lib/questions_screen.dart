@@ -44,14 +44,16 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
+            // Despliega todos los botones de respuesta en una lista
             ...currentQuestion.getshuffledAnswers().map((answer) {
+              // Crea un AnswerButton para cada respuesta
               return AnswerButton(
                 answerText: answer,
                 onTap: () {
                   answerQuestion(answer);
                 },
               );
-            }).toList(), //revisar luego
+            }).toList(),
           ],
         ),
       ),

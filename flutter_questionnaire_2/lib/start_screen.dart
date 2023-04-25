@@ -9,29 +9,36 @@ class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset("assets/images/quiz-logo.png",
-            width: 300, color: const Color.fromARGB(150, 255, 255, 255)),
-        const SizedBox(height: 80),
-        Text(
-          "Aprende Flutter de manera divertida!",
-          style: GoogleFonts.roboto(
-            fontSize: 24,
-            color: const Color.fromARGB(255, 242, 227, 250),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Imagen del logo del cuestionario
+          Image.asset(
+            "assets/images/quiz-logo.png",
+            width: 300,
+            color: const Color.fromARGB(150, 255, 255, 255),
           ),
-        ),
-        const SizedBox(height: 30),
-        OutlinedButton.icon(
-          onPressed: startQuiz,
-          style: OutlinedButton.styleFrom(
-            foregroundColor: const Color.fromARGB(255, 242, 227, 250),
+          const SizedBox(height: 80),
+          // Texto de presentación del cuestionario
+          Text(
+            "Aprende Flutter de manera divertida!",
+            style: GoogleFonts.roboto(
+              fontSize: 24,
+              color: const Color.fromARGB(255, 242, 227, 250),
+            ),
           ),
-          icon: const Icon(Icons.arrow_right_alt),
-          label: const Text('Inicio de cuestionario'),
-        )
-      ],
-    ));
+          const SizedBox(height: 30),
+          // Botón para iniciar el cuestionario
+          OutlinedButton.icon(
+            onPressed: startQuiz,
+            style: OutlinedButton.styleFrom(
+              foregroundColor: const Color.fromARGB(255, 242, 227, 250),
+            ),
+            icon: const Icon(Icons.arrow_right_alt),
+            label: const Text('Inicio de cuestionario'),
+          )
+        ],
+      ),
+    );
   }
 }
