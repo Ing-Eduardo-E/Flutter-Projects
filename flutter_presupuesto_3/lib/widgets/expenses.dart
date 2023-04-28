@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'models/expense.dart';
+import 'package:flutter_presupuesto_3/models/expense.dart';
+import 'package:flutter_presupuesto_3/widgets/expenses_list/expenses_list.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -15,19 +15,22 @@ class _ExpensesState extends State<Expenses> {
         title: 'Comida rápida',
         amount: 10.99,
         date: DateTime.now(),
-        category: Category.Comida),
+        category: Category.comida),
     Expense(
         title: 'Cinema',
         amount: 15.69,
         date: DateTime.now(),
-        category: Category.Ocio),
+        category: Category.ocio),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(children: const [
-      Text('El gráfico va aquí'),
-      Text('La lista de gastos va aquí'),
-    ]));
+      body: Column(
+        children: [
+          const Text('El gráfico va aquí'),
+          Expanded(child: ExpensesList(expenses: _registeredExpenses)),
+        ],
+      ),
+    );
   }
 }
