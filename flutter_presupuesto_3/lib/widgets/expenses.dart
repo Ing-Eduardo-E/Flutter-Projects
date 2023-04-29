@@ -15,12 +15,12 @@ class _ExpensesState extends State<Expenses> {
         title: 'Comida rápida',
         amount: 10.99,
         date: DateTime.now(),
-        category: Category.comida),
+        category: Category.food),
     Expense(
         title: 'Cinema',
         amount: 15.69,
         date: DateTime.now(),
-        category: Category.ocio),
+        category: Category.leisure),
   ];
   @override
   Widget build(BuildContext context) {
