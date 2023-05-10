@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_presupuesto_3/models/expense.dart';
+import 'package:flutter_presupuesto_3/widgets/chart/chart.dart';
 import 'package:flutter_presupuesto_3/widgets/expenses_list/expenses_list.dart';
 import 'package:flutter_presupuesto_3/widgets/new_expense.dart';
 
@@ -84,7 +85,7 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
-          const Text('El gráfico va aquí'),
+          Chart(expenses: _registeredExpenses),
           Expanded(
             child: mainContent,
           ),
