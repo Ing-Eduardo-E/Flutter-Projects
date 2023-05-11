@@ -4,14 +4,17 @@ import 'package:flutter_presupuesto_3/widgets/chart/chart.dart';
 import 'package:flutter_presupuesto_3/widgets/expenses_list/expenses_list.dart';
 import 'package:flutter_presupuesto_3/widgets/new_expense.dart';
 
+// Clase Expenses que extiende de StatefulWidget
 class Expenses extends StatefulWidget {
-  const Expenses({super.key});
+  const Expenses({Key? key}) : super(key: key);
 
   @override
   State<Expenses> createState() => _ExpensesState();
 }
 
+// Clase _ExpensesState que extiende de State<Expenses>
 class _ExpensesState extends State<Expenses> {
+  // Lista de objetos Expense
   final List<Expense> _registeredExpenses = [
     Expense(
         title: 'Comida rápida',
@@ -25,6 +28,7 @@ class _ExpensesState extends State<Expenses> {
         category: Category.ocio),
   ];
 
+  // Método que abre un modal para agregar un nuevo gasto
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       isScrollControlled: true,
@@ -33,12 +37,14 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
+  // Método que agrega un nuevo gasto a la lista
   void _addExpense(Expense expense) {
     setState(() {
       _registeredExpenses.add(expense);
     });
   }
 
+  // Método que elimina un gasto de la lista
   void _removeExpense(Expense expense) {
     final expenseIndex = _registeredExpenses.indexOf(expense);
     setState(() {
@@ -60,6 +66,7 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
+  // Método build que construye el widget
   @override
   Widget build(BuildContext context) {
     Widget mainContent = const Center(
@@ -73,6 +80,7 @@ class _ExpensesState extends State<Expenses> {
       );
     }
 
+    // Widget Scaffold que implementa la estructura básica de diseño visual de Material Design
     return Scaffold(
       appBar: AppBar(
         title: const Text('Presupuesto personal'),

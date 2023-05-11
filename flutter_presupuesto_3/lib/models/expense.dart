@@ -15,35 +15,38 @@ const categoryIcons = {
 };
 
 class Expense {
+  // Clase Expense representa un gasto
   Expense({
-    required this.title,
-    required this.amount,
-    required this.date,
-    required this.category,
-  }) : id = uuid.v4();
+    required this.title, // Título del gasto
+    required this.amount, // Cantidad gastada
+    required this.date, // Fecha del gasto
+    required this.category, // Categoría del gasto
+  }) : id = uuid.v4(); // Identificador único del gasto
 
-  final String id;
-  final String title;
-  final double amount;
-  final DateTime date;
-  final Category category;
+  final String id; // Identificador único del gasto
+  final String title; // Título del gasto
+  final double amount; // Cantidad gastada
+  final DateTime date; // Fecha del gasto
+  final Category category; // Categoría del gasto
 
-  String get formattedDate => formatter.format(date);
+  String get formattedDate => formatter
+      .format(date); // Fecha formateada para mostrar en la interfaz de usuario
 }
 
 class ExpenseBucket {
+  // Clase ExpenseBucket representa un conjunto de gastos de una categoría específica
   ExpenseBucket({
-    required this.category,
-    required this.expenses,
+    required this.category, // Categoría de los gastos en el conjunto
+    required this.expenses, // Lista de los gastos en el conjunto
   });
 
   ExpenseBucket.forCategory(List<Expense> allExpenses, this.category)
       : expenses = allExpenses
             .where((expense) => expense.category == category)
-            .toList();
+            .toList(); // Filtra los gastos que pertenecen a la categoría específica
 
-  final Category category;
-  final List<Expense> expenses;
+  final Category category; // Categoría de los gastos en el conjunto
+  final List<Expense> expenses; // Lista de los gastos en el conjunto
 
   double get totalExpenses {
     double sum = 0;

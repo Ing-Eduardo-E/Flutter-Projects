@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_presupuesto_3/models/expense.dart';
 
+// Clase NewExpense que extiende de StatefulWidget
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key, required this.onAddExpense});
+  // Constructor de la clase con parámetros requeridos
+  const NewExpense({Key? key, required this.onAddExpense}) : super(key: key);
 
+  // Función que se ejecuta al agregar un nuevo gasto
   final void Function(Expense expense) onAddExpense;
 
   @override
   State<NewExpense> createState() => _NewExpenseState();
 }
 
+// Clase _NewExpenseState que extiende de State<NewExpense>
 class _NewExpenseState extends State<NewExpense> {
+  // Controladores para los campos de texto
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+  // Fecha seleccionada por el usuario
   DateTime? _selectedDate;
+  // Categoría seleccionada por el usuario
   Category _selectedCategory = Category.ocio;
 
+  // Método que muestra un selector de fecha
   void _presentDatePicker() async {
     final now = DateTime.now();
     final firstDate = DateTime(now.year, now.month - 1, now.day);
@@ -30,6 +38,7 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
+  // Método que valida y envía los datos del nuevo gasto
   void _submitExpenseData() {
     final enteredAmount = double.tryParse(_amountController.text);
     final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
@@ -71,12 +80,14 @@ class _NewExpenseState extends State<NewExpense> {
     super.dispose();
   }
 
+  // Método build que construye el widget
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
       child: Column(
         children: [
+          // Widget TextField que permite al usuario ingresar texto
           TextField(
             controller: _titleController,
             maxLength: 50,
@@ -123,9 +134,7 @@ class _NewExpenseState extends State<NewExpense> {
                     .map(
                       (category) => DropdownMenuItem(
                         value: category,
-                        child: Text(
-                          category.name.toUpperCase(),
-                        ),
+                        child: Text(category.name.toUpperCase()),
                       ),
                     )
                     .toList(),

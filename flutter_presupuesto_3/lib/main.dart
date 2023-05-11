@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_presupuesto_3/widgets/expenses.dart';
 
+// Esquema de colores para el tema claro
 var kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 96, 59, 181),
 );
 
+// Esquema de colores para el tema oscuro
 var kDarkColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 5, 99, 125),
   brightness: Brightness.dark,
 );
 
+// Función main que se ejecuta al iniciar la aplicación
 void main() {
+  // Widget MaterialApp que define la estructura básica de la aplicación
   runApp(
     MaterialApp(
+      // Tema oscuro de la aplicación
       darkTheme: ThemeData.dark().copyWith(
         useMaterial3: true,
         colorScheme: kDarkColorScheme,
@@ -30,6 +35,7 @@ void main() {
           ),
         ),
       ),
+      // Tema claro de la aplicación
       theme: ThemeData().copyWith(
         useMaterial3: true,
         colorScheme: kColorScheme,
@@ -46,17 +52,15 @@ void main() {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: kColorScheme.primaryContainer,
-          ),
+              backgroundColor: kColorScheme.primaryContainer),
         ),
         textTheme: ThemeData().textTheme.copyWith(
-              titleLarge: TextStyle(
+            titleLarge: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: kColorScheme.onSecondaryContainer,
-                fontSize: 17,
-              ),
-            ),
+                fontSize: 17)),
       ),
+      // Widget principal de la aplicación
       home: const Expenses(),
     ),
   );
