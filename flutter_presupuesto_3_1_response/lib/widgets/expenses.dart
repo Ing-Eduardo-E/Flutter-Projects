@@ -27,6 +27,7 @@ class _ExpensesState extends State<Expenses> {
 
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+      useSafeArea: true,
       isScrollControlled: true,
       context: context,
       builder: (ctx) => NewExpense(onAddExpense: _addExpense),
@@ -62,6 +63,12 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    //La instrucción MediaQuery.of(context).size.width obtiene el ancho de la pantalla
+    //actual en píxeles. La clase MediaQuery proporciona información sobre el tamaño y
+    //la orientación de la pantalla actual. La propiedad size devuelve un objeto Size
+    //que contiene el ancho y el alto de la pantalla actual, y la propiedad width
+    //devuelve el ancho de la pantalla actual en píxeles. En este caso, se almacena el ancho de la pantalla en la variable width.
+    final width = MediaQuery.of(context).size.width;
     Widget mainContent = const Center(
       child: Text('No hay gastos registrados'),
     );
@@ -83,14 +90,37 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Chart(expenses: _registeredExpenses),
-          Expanded(
-            child: mainContent,
-          ),
-        ],
-      ),
+      // Este código es una expresión ternaria que se utiliza para determinar
+      //cómo se mostrará el contenido en función del ancho de la pantalla. Si
+      //el ancho de la pantalla es menor que 600 píxeles, se mostrará una
+      //columna con un gráfico y el contenido principal. Si el ancho de la
+      //pantalla es mayor o igual a 600 píxeles, se mostrará una fila con un
+      //gráfico y el contenido principal.
+
+      // En ambos casos, se utiliza el widget Chart para mostrar un gráfico
+      //de los gastos registrados y el widget mainContent para mostrar la
+      //lista de gastos registrados. El widget Expanded se utiliza para
+      //asegurarse de que el contenido principal ocupe todo el espacio
+      //disponible en la columna o fila.
+      body: width < 600
+          ? Column(
+              children: [
+                Chart(expenses: _registeredExpenses),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(
+                  child: Chart(expenses: _registeredExpenses),
+                ),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_presupuesto_3/widgets/expenses.dart';
+// import 'package:flutter/services.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 96, 59, 181),
@@ -11,6 +12,14 @@ var kDarkColorScheme = ColorScheme.fromSeed(
 );
 
 void main() {
+  // //WidgetsFlutterBinding es una clase que inicializa el sistema Flutter.
+  // WidgetsFlutterBinding();
+  // //El código establece la orientación preferida de la pantalla en modo vertical (portraitUp)
+  // //y luego ejecuta la aplicación MyApp.
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  // ]).then(
+  //   (fn) {
   runApp(
     MaterialApp(
       darkTheme: ThemeData.dark().copyWith(
@@ -60,4 +69,6 @@ void main() {
       home: const Expenses(),
     ),
   );
+  //   },
+  // );
 }
