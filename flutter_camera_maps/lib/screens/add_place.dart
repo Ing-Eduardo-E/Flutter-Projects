@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_camera_maps/providers/user_places.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_camera_maps/providers/user_places.dart';
 
 class AddPlaceScreen extends ConsumerStatefulWidget {
   const AddPlaceScreen({super.key});
 
   @override
-  ConsumerState<AddPlaceScreen> createState() => _AddPlaceScreenState();
+  ConsumerState<AddPlaceScreen> createState() {
+    return _AddPlaceScreenState();
+  }
 }
 
 class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
@@ -19,6 +21,7 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
       // Si el texto está vacío
       return; // No hacer nada
     }
+
     ref
         .read(userPlacesProvider.notifier)
         .addPlace(enteredTitle); // Añadir lugar

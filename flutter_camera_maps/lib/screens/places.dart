@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_camera_maps/themes.dart/theme.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_camera_maps/providers/user_places.dart';
 import 'package:flutter_camera_maps/screens/add_place.dart';
 import 'package:flutter_camera_maps/widgets/places_list.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PlacesScreen extends ConsumerWidget {
   const PlacesScreen({super.key}); // Constructor de la clase PlacesScreen
@@ -28,8 +29,16 @@ class PlacesScreen extends ConsumerWidget {
               ),
         ],
       ),
-      body: PlaceList(
-        places: userPlaces, // Lista de lugares
+      body: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Theme(
+          data: theme, // Tema deseado
+          child: PlacesList(
+            places: userPlaces, // Lista de lugares
+          ),
+        ),
       ), // Cuerpo de la pantalla
     );
   }

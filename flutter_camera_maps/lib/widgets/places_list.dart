@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_camera_maps/models/place.dart';
+import 'package:flutter_camera_maps/screens/places_detail.dart';
 
-class PlaceList extends StatelessWidget {
-  const PlaceList(
+class PlacesList extends StatelessWidget {
+  const PlacesList(
       {super.key,
       required this.places}); // Constructor de la clase PlaceList que recibe una lista de lugares
 
@@ -24,24 +25,30 @@ class PlaceList extends StatelessWidget {
               .copyWith(color: Theme.of(context).colorScheme.surface),
         ),
       );
-    } else {
-      // Si la lista de lugares no está vacía
-      return ListView.builder(
-        // Retorna un ListView que muestra los lugares
-        itemCount: places
-            .length, // La cantidad de elementos en la lista es igual a la cantidad de lugares
-        itemBuilder: (context, index) => ListTile(
-          // Cada elemento en la lista es un ListTile
-          title: Text(
-            // Con un título que muestra el nombre del lugar
-            places[index].title,
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(color: Theme.of(context).colorScheme.background),
-          ),
-        ),
-      );
     }
+    // Si la lista de lugares no está vacía
+    return ListView.builder(
+      // Retorna un ListView que muestra los lugares
+      itemCount: places
+          .length, // La cantidad de elementos en la lista es igual a la cantidad de lugares
+      itemBuilder: (ctx, index) => ListTile(
+        // Cada elemento en la lista es un ListTile
+        title: Text(
+          // Con un título que muestra el nombre del lugar
+          places[index].title,
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(color: Theme.of(context).colorScheme.secondary),
+        ),
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (ctx) => PlaceDetailScreen(place: places[index]),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
