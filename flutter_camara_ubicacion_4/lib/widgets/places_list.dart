@@ -46,6 +46,14 @@ class PlacesList extends StatelessWidget {
               .titleMedium!
               .copyWith(color: Theme.of(context).colorScheme.secondary),
         ),
+        subtitle: Text(
+          // Y un subtítulo que muestra la dirección del lugar
+          places[index].location.address,
+          style: Theme.of(context)
+              .textTheme
+              .bodySmall!
+              .copyWith(color: Theme.of(context).colorScheme.onBackground),
+        ),
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(

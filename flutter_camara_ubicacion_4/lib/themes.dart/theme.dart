@@ -9,6 +9,7 @@ final ColorScheme colorScheme = ColorScheme.fromSeed(
   secondary: const Color(0xFF03DAC6),
   surface: const Color(0xFFE5E5E5),
   background: const Color.fromARGB(255, 123, 66, 204),
+  onBackground: const Color(0xFFFFFFFF),
 );
 
 // Definición del tema

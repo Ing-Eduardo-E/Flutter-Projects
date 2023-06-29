@@ -58,8 +58,8 @@ class _ImageInputState extends State<ImageInput> {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Theme.of(context).colorScheme.primary,
-          width: 2,
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+          width: 1,
         ),
         borderRadius: BorderRadius.circular(10),
       ),

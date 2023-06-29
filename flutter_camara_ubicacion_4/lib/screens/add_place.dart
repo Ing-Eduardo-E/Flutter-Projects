@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_camara_ubicacion_4/models/place.dart';
 import 'package:flutter_camara_ubicacion_4/widgets/image_input.dart';
 import 'package:flutter_camara_ubicacion_4/widgets/location_input.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_camara_ubicacion_4/providers/user_places.dart';
 
 class AddPlaceScreen extends ConsumerStatefulWidget {
@@ -19,17 +20,21 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
       TextEditingController(); // Controlador para el campo de texto del título
 
   File? _selectedImage; // Imagen seleccionada
+  PlaceLocation? _selectedLocation; // Ubicación seleccionada
 
   void _savePlace() {
     final enteredTitle = _titleController.text; // Obtener el texto del título
-    if (enteredTitle.isEmpty || _selectedImage == null) {
+    if (enteredTitle.isEmpty ||
+        _selectedImage == null ||
+        _selectedLocation == null) {
       // Si el texto está vacío
       return; // No hacer nada
     }
 
     ref
         .read(userPlacesProvider.notifier)
-        .addPlace(enteredTitle, _selectedImage!); // Añadir lugar
+        .addPlace(
+        enteredTitle, _selectedImage!, _selectedLocation!); // Añadir lugar
 
     Navigator.of(context).pop(); // Cerrar la pantalla
   }
@@ -66,14 +71,18 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
                     .onPrimary, // Color del texto del campo de texto
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
             ImageInput(onPickImage: (image) {
               _selectedImage = image;
             }),
             const SizedBox(
               height: 10,
             ),
-            const LocationInput(),
+            LocationInput(
+              onSelectLocation: (location) {
+                _selectedLocation = location;
+              },
+            ),
             const SizedBox(height: 16), // Espacio en blanco
             ElevatedButton.icon(
               onPressed: _savePlace, // Acción al presionar el botón
